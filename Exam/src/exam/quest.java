@@ -53,7 +53,7 @@ public class quest {
 		
 		if(answer == 0 || a == -1 || b == -1 || c == -1 || d == -1) {	//不符合規則的題目記錄
 			try {
-				File file = new File("D:\\note\\errorLog.txt");
+				File file = new File("errorLog.txt");
 				file.delete();
 				file.createNewFile();
 				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(

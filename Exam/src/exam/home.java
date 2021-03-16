@@ -97,7 +97,7 @@ public class home {
 		ArrayList<quest> allQuest = new ArrayList<quest>();		//全題庫隨機物件陣列
 
 		try {
-			InputStreamReader read = new InputStreamReader (new FileInputStream("D:\\note\\quest.txt"),"UTF-8");
+			InputStreamReader read = new InputStreamReader (new FileInputStream("quest.txt"),"UTF-8");
 			@SuppressWarnings("resource")
 			Scanner inf = new Scanner(read);
 			frame.setTitle(inf.next() + "\u6A21\u64EC\u6E2C\u9A57");	//第一行為標題名稱
