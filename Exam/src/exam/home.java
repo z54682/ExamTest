@@ -187,7 +187,8 @@ public class home {
 			q.setTextArea(textArea);
 			q.setRadioButto(rdbtnNewRadioButton_1, rdbtnNewRadioButton_2, rdbtnNewRadioButton_3, rdbtnNewRadioButton_4);
 			
-			q.setQuest(arrayAllQuest.get(rand[i]));
+			q.setQuest(arrayAllQuest.get(rand[i]).substring(0, 3) + Integer.toString(i + 1) + "." +
+					arrayAllQuest.get(rand[i]).substring(3));
 
 			arrayQuest.add(q);
 		}
@@ -309,7 +310,8 @@ public class home {
 			gbc_btnNewButton_1.gridy = 5;
 			panel_2.add(btnNewButton_1, gbc_btnNewButton_1);
 			
-			q.setQuest(arrayAllQuest.get(rand_2[i]));
+			q.setQuest(arrayAllQuest.get(rand_2[i]).substring(0, 3) + Integer.toString(i + 1) + "." +
+						arrayAllQuest.get(rand_2[i]).substring(3));
 	
 			allQuest.add(q);
 		}
