@@ -1,20 +1,26 @@
 package exam;
 
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 
-public class quest {
+public class quest implements ClipboardOwner{
 	private JTextArea textArea;
 	private JRadioButton RadioButton_1, RadioButton_2, RadioButton_3, RadioButton_4;
 	private int answer = 0;
+	private String quest;
+	private Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 	
 	public void setTextArea(JTextArea textArea) {
 		this.textArea = textArea;
@@ -27,9 +33,10 @@ public class quest {
 		this.RadioButton_4 = rb4;
 	}
 	
-	public void setQuest(String str) {
+	public void setQuest(String str, String quest) {
 		String Ans = str.substring(0, 3);
 		String Quest = str.substring(3);
+		this.quest = quest;
 		switch(Ans) {
 		case "(A)":
 			answer = 1;
@@ -51,7 +58,7 @@ public class quest {
 		c = Quest.indexOf("(C)");
 		d = Quest.indexOf("(D)");
 		
-		if(answer == 0 || a == -1 || b == -1 || c == -1 || d == -1) {	//¤£²Å¦X³W«hªºÃD¥Ø°O¿ı
+		if(answer == 0 || a == -1 || b == -1 || c == -1 || d == -1) {	//ä¸ç¬¦åˆè¦å‰‡çš„é¡Œç›®è¨˜éŒ„
 			try {
 				File file = new File("errorLog.txt");
 				file.delete();
@@ -96,5 +103,17 @@ public class quest {
 		case 4: RadioButton_4.setForeground(Color.red); break;
 		}
 		return false;
+	}
+	
+	public void copyQuest()
+	{
+		StringSelection contents = new StringSelection(quest);
+        clipboard.setContents(contents, this);
+	}
+
+	@Override
+	public void lostOwnership(Clipboard clipboard, Transferable contents) {
+		// TODO Auto-generated method stub
+		
 	}
 }

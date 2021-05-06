@@ -92,19 +92,19 @@ public class home {
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		layeredPane.add(scrollPane);
 		
-		ArrayList<quest> arrayQuest = new ArrayList<quest>();	//¤­¤QÃDÃD®wª«¥ó°}¦C
-		ArrayList<String> arrayAllQuest = new ArrayList<String>();	//ÀÉ®×¸ü¤J¥şÃD®wª«¥ó
-		ArrayList<quest> allQuest = new ArrayList<quest>();		//¥şÃD®wÀH¾÷ª«¥ó°}¦C
+		ArrayList<quest> arrayQuest = new ArrayList<quest>();	//äº”åé¡Œé¡Œåº«ç‰©ä»¶é™£åˆ—
+		ArrayList<String> arrayAllQuest = new ArrayList<String>();	//æª”æ¡ˆè¼‰å…¥å…¨é¡Œåº«ç‰©ä»¶
+		ArrayList<quest> allQuest = new ArrayList<quest>();		//å…¨é¡Œåº«éš¨æ©Ÿç‰©ä»¶é™£åˆ—
 
 		try {
 			InputStreamReader read = new InputStreamReader (new FileInputStream("quest.txt"),"UTF-8");
 			@SuppressWarnings("resource")
 			Scanner inf = new Scanner(read);
-			frame.setTitle(inf.next() + "\u6A21\u64EC\u6E2C\u9A57");	//²Ä¤@¦æ¬°¼ĞÃD¦WºÙ
+			frame.setTitle(inf.next() + "\u6A21\u64EC\u6E2C\u9A57");	//ç¬¬ä¸€è¡Œç‚ºæ¨™é¡Œåç¨±
 			while (inf.hasNext()) {
 				if (inf.hasNextLine()) {
 					String s = inf.next();
-					if(!s.substring(0, 3).equals("***"))	//***¶}ÀY¬°³¹¸`»¡©ú¦æ
+					if(!s.substring(0, 3).equals("***"))	//***é–‹é ­ç‚ºç« ç¯€èªªæ˜è¡Œ
 						arrayAllQuest.add(s);
 				}
 			}
@@ -188,7 +188,7 @@ public class home {
 			q.setRadioButto(rdbtnNewRadioButton_1, rdbtnNewRadioButton_2, rdbtnNewRadioButton_3, rdbtnNewRadioButton_4);
 			
 			q.setQuest(arrayAllQuest.get(rand[i]).substring(0, 3) + Integer.toString(i + 1) + "." +
-					arrayAllQuest.get(rand[i]).substring(3));
+					arrayAllQuest.get(rand[i]).substring(3), arrayAllQuest.get(rand[i]));
 
 			arrayQuest.add(q);
 		}
@@ -310,18 +310,29 @@ public class home {
 			gbc_btnNewButton_1.gridy = 5;
 			panel_2.add(btnNewButton_1, gbc_btnNewButton_1);
 			
+			JButton btnNewButton_2 = new JButton("Copy");
+			btnNewButton_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					allQuest.get(Integer.parseInt(s)).copyQuest();
+				}
+			});
+			GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+			gbc_btnNewButton_2.gridx = 1;
+			gbc_btnNewButton_2.gridy = 5;
+			panel_2.add(btnNewButton_2, gbc_btnNewButton_2);
+			
 			q.setQuest(arrayAllQuest.get(rand_2[i]).substring(0, 3) + Integer.toString(i + 1) + "." +
-						arrayAllQuest.get(rand_2[i]).substring(3));
+						arrayAllQuest.get(rand_2[i]).substring(3), arrayAllQuest.get(rand_2[i]));
 	
 			allQuest.add(q);
 		}
 	}
 	
 	/** 
-	* ÀH¾÷«ü©w½d³ò¤ºN­Ó¤£­«½Æªº¼Æ 
-	* @param min «ü©w½d³ò³Ì¤p­È 
-	* @param max «ü©w½d³ò³Ì¤j­È 
-	* @param n ÀH¾÷¼Æ­Ó¼Æ 
+	* éš¨æ©ŸæŒ‡å®šç¯„åœå…§Nå€‹ä¸é‡è¤‡çš„æ•¸ 
+	* @param min æŒ‡å®šç¯„åœæœ€å°å€¼ 
+	* @param max æŒ‡å®šç¯„åœæœ€å¤§å€¼ 
+	* @param n éš¨æ©Ÿæ•¸å€‹æ•¸ 
 	*/ 
 	public static int[] randomCommon(int min, int max, int n){
 		if (n > (max - min - 1) || max < min) {
