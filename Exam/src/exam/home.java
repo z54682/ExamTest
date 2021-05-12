@@ -117,97 +117,99 @@ public class home {
 			e.printStackTrace();
 		}
 
-		int[] rand = randomCommon(0, arrayAllQuest.size() - 1, 50);
-		
-		for(int i = 0; i < 50; i++) {
-			JPanel panel_1 = new JPanel();
-			GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-			gbc_panel_1.insets = new Insets(0, 0, 5, 0);
-			gbc_panel_1.fill = GridBagConstraints.BOTH;
-			gbc_panel_1.gridx = 0;
-			gbc_panel_1.gridy = i;
-			panel.add(panel_1, gbc_panel_1);
-			GridBagLayout gbl_panel_1 = new GridBagLayout();
-			gbl_panel_1.columnWidths = new int[]{0, 0};
-			gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-			gbl_panel_1.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-			gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-			panel_1.setLayout(gbl_panel_1);
-		
-			JTextArea textArea = new JTextArea();
-			textArea.setEditable(false);
-			textArea.setLineWrap(true);
-			textArea.setColumns(60);
-			GridBagConstraints gbc_textArea = new GridBagConstraints();
-			gbc_textArea.insets = new Insets(0, 0, 5, 0);
-			gbc_textArea.fill = GridBagConstraints.BOTH;
-			gbc_textArea.gridx = 0;
-			gbc_textArea.gridy = 0;
-			gbc_textArea.anchor = GridBagConstraints.WEST;
-			panel_1.add(textArea, gbc_textArea);
+		if(arrayAllQuest.size() >= 50) {
+			int[] rand = randomCommon(0, arrayAllQuest.size() - 1, 50);
 			
-			JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
-			GridBagConstraints gbc_rdbtnNewRadioButton_1 = new GridBagConstraints();
-			gbc_rdbtnNewRadioButton_1.insets = new Insets(0, 0, 5, 0);
-			gbc_rdbtnNewRadioButton_1.gridx = 0;
-			gbc_rdbtnNewRadioButton_1.gridy = 1;
-			gbc_rdbtnNewRadioButton_1.anchor = GridBagConstraints.WEST;
-			panel_1.add(rdbtnNewRadioButton_1, gbc_rdbtnNewRadioButton_1);
+			for(int i = 0; i < 50; i++) {
+				JPanel panel_1 = new JPanel();
+				GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+				gbc_panel_1.insets = new Insets(0, 0, 5, 0);
+				gbc_panel_1.fill = GridBagConstraints.BOTH;
+				gbc_panel_1.gridx = 0;
+				gbc_panel_1.gridy = i;
+				panel.add(panel_1, gbc_panel_1);
+				GridBagLayout gbl_panel_1 = new GridBagLayout();
+				gbl_panel_1.columnWidths = new int[]{0, 0};
+				gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+				gbl_panel_1.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+				gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+				panel_1.setLayout(gbl_panel_1);
 			
-			JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("New radio button");
-			GridBagConstraints gbc_rdbtnNewRadioButton_2 = new GridBagConstraints();
-			gbc_rdbtnNewRadioButton_2.insets = new Insets(0, 0, 5, 0);
-			gbc_rdbtnNewRadioButton_2.gridx = 0;
-			gbc_rdbtnNewRadioButton_2.gridy = 2;
-			gbc_rdbtnNewRadioButton_2.anchor = GridBagConstraints.WEST;
-			panel_1.add(rdbtnNewRadioButton_2, gbc_rdbtnNewRadioButton_2);
-			
-			JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("New radio button");
-			GridBagConstraints gbc_rdbtnNewRadioButton_3 = new GridBagConstraints();
-			gbc_rdbtnNewRadioButton_3.insets = new Insets(0, 0, 5, 0);
-			gbc_rdbtnNewRadioButton_3.gridx = 0;
-			gbc_rdbtnNewRadioButton_3.gridy = 3;
-			gbc_rdbtnNewRadioButton_3.anchor = GridBagConstraints.WEST;
-			panel_1.add(rdbtnNewRadioButton_3, gbc_rdbtnNewRadioButton_3);
-			
-			JRadioButton rdbtnNewRadioButton_4 = new JRadioButton("New radio button");
-			GridBagConstraints gbc_rdbtnNewRadioButton_4 = new GridBagConstraints();
-			gbc_rdbtnNewRadioButton_4.gridx = 0;
-			gbc_rdbtnNewRadioButton_4.gridy = 4;
-			gbc_rdbtnNewRadioButton_4.anchor = GridBagConstraints.WEST;
-			panel_1.add(rdbtnNewRadioButton_4, gbc_rdbtnNewRadioButton_4);
-			
-			ButtonGroup btnGroup = new ButtonGroup();
-			btnGroup.add(rdbtnNewRadioButton_1);
-			btnGroup.add(rdbtnNewRadioButton_2);
-			btnGroup.add(rdbtnNewRadioButton_3);
-			btnGroup.add(rdbtnNewRadioButton_4);
-			
-			quest q = new quest();
-			q.setTextArea(textArea);
-			q.setRadioButto(rdbtnNewRadioButton_1, rdbtnNewRadioButton_2, rdbtnNewRadioButton_3, rdbtnNewRadioButton_4);
-			
-			q.setQuest(arrayAllQuest.get(rand[i]).substring(0, 3) + Integer.toString(i + 1) + "." +
-					arrayAllQuest.get(rand[i]).substring(3), arrayAllQuest.get(rand[i]));
-
-			arrayQuest.add(q);
-		}
-		
-		JButton btnNewButton = new JButton("\u8A55\u5206");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int score = 0;
-				for(int i = 0; i < 50; i++) {
-					if(arrayQuest.get(i).checkAnswer())
-						score += 2;
-					btnNewButton.setText(Integer.toString(score));
-				}
+				JTextArea textArea = new JTextArea();
+				textArea.setEditable(false);
+				textArea.setLineWrap(true);
+				textArea.setColumns(60);
+				GridBagConstraints gbc_textArea = new GridBagConstraints();
+				gbc_textArea.insets = new Insets(0, 0, 5, 0);
+				gbc_textArea.fill = GridBagConstraints.BOTH;
+				gbc_textArea.gridx = 0;
+				gbc_textArea.gridy = 0;
+				gbc_textArea.anchor = GridBagConstraints.WEST;
+				panel_1.add(textArea, gbc_textArea);
+				
+				JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
+				GridBagConstraints gbc_rdbtnNewRadioButton_1 = new GridBagConstraints();
+				gbc_rdbtnNewRadioButton_1.insets = new Insets(0, 0, 5, 0);
+				gbc_rdbtnNewRadioButton_1.gridx = 0;
+				gbc_rdbtnNewRadioButton_1.gridy = 1;
+				gbc_rdbtnNewRadioButton_1.anchor = GridBagConstraints.WEST;
+				panel_1.add(rdbtnNewRadioButton_1, gbc_rdbtnNewRadioButton_1);
+				
+				JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("New radio button");
+				GridBagConstraints gbc_rdbtnNewRadioButton_2 = new GridBagConstraints();
+				gbc_rdbtnNewRadioButton_2.insets = new Insets(0, 0, 5, 0);
+				gbc_rdbtnNewRadioButton_2.gridx = 0;
+				gbc_rdbtnNewRadioButton_2.gridy = 2;
+				gbc_rdbtnNewRadioButton_2.anchor = GridBagConstraints.WEST;
+				panel_1.add(rdbtnNewRadioButton_2, gbc_rdbtnNewRadioButton_2);
+				
+				JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("New radio button");
+				GridBagConstraints gbc_rdbtnNewRadioButton_3 = new GridBagConstraints();
+				gbc_rdbtnNewRadioButton_3.insets = new Insets(0, 0, 5, 0);
+				gbc_rdbtnNewRadioButton_3.gridx = 0;
+				gbc_rdbtnNewRadioButton_3.gridy = 3;
+				gbc_rdbtnNewRadioButton_3.anchor = GridBagConstraints.WEST;
+				panel_1.add(rdbtnNewRadioButton_3, gbc_rdbtnNewRadioButton_3);
+				
+				JRadioButton rdbtnNewRadioButton_4 = new JRadioButton("New radio button");
+				GridBagConstraints gbc_rdbtnNewRadioButton_4 = new GridBagConstraints();
+				gbc_rdbtnNewRadioButton_4.gridx = 0;
+				gbc_rdbtnNewRadioButton_4.gridy = 4;
+				gbc_rdbtnNewRadioButton_4.anchor = GridBagConstraints.WEST;
+				panel_1.add(rdbtnNewRadioButton_4, gbc_rdbtnNewRadioButton_4);
+				
+				ButtonGroup btnGroup = new ButtonGroup();
+				btnGroup.add(rdbtnNewRadioButton_1);
+				btnGroup.add(rdbtnNewRadioButton_2);
+				btnGroup.add(rdbtnNewRadioButton_3);
+				btnGroup.add(rdbtnNewRadioButton_4);
+				
+				quest q = new quest();
+				q.setTextArea(textArea);
+				q.setRadioButto(rdbtnNewRadioButton_1, rdbtnNewRadioButton_2, rdbtnNewRadioButton_3, rdbtnNewRadioButton_4);
+				
+				q.setQuest(arrayAllQuest.get(rand[i]).substring(0, 3) + Integer.toString(i + 1) + "." +
+						arrayAllQuest.get(rand[i]).substring(3), arrayAllQuest.get(rand[i]));
+	
+				arrayQuest.add(q);
 			}
-		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 50;
-		panel.add(btnNewButton, gbc_btnNewButton);
+			
+			JButton btnNewButton = new JButton("\u8A55\u5206");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					int score = 0;
+					for(int i = 0; i < 50; i++) {
+						if(arrayQuest.get(i).checkAnswer())
+							score += 2;
+						btnNewButton.setText(Integer.toString(score));
+					}
+				}
+			});
+			GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+			gbc_btnNewButton.gridx = 0;
+			gbc_btnNewButton.gridy = 50;
+			panel.add(btnNewButton, gbc_btnNewButton);
+		}
 		
 		JLayeredPane layeredPane_1 = new JLayeredPane();
 		tabbedPane.addTab("\u5168\u984C\u5EAB\u6E2C\u9A57(\u9806\u5E8F\u6253\u4E82)", null, layeredPane_1, null);
